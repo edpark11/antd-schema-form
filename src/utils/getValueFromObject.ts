@@ -1,5 +1,5 @@
-import transform from 'lodash-es/transform';
-import isPlainObject from 'lodash-es/isPlainObject';
+import transform from 'lodash/transform';
+import isPlainObject from 'lodash/isPlainObject';
 import { Store } from 'rc-field-form/es/interface';
 
 /**

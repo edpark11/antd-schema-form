@@ -1,4 +1,4 @@
-import isPlainObject from 'lodash-es/isPlainObject';
+import isPlainObject from 'lodash/isPlainObject';
 import { Store } from 'rc-field-form/es/interface';
 
 /**

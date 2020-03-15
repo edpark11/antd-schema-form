@@ -9,9 +9,9 @@ import {
   ReactNodeArray
 } from 'react';
 import * as PropTypes from 'prop-types';
-import isArray from 'lodash-es/isArray';
-import isNil from 'lodash-es/isNil';
-import isString from 'lodash-es/isString';
+import isArray from 'lodash/isArray';
+import isNil from 'lodash/isNil';
+import isString from 'lodash/isString';
 import { Button } from 'antd';
 import { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';

@@ -12,7 +12,7 @@ import {
 } from 'react';
 import * as PropTypes from 'prop-types';
 import { Validator } from 'prop-types';
-import isPlainObject from 'lodash-es/isPlainObject';
+import isPlainObject from 'lodash/isPlainObject';
 import { Form } from 'antd';
 import { FormInstance } from 'antd/es/form';
 import { FormProps } from 'antd/es/form/Form';

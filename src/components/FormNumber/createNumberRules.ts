@@ -1,5 +1,5 @@
-import isNil from 'lodash-es/isNil';
-import isNumber from 'lodash-es/isNumber';
+import isNil from 'lodash/isNil';
+import isNumber from 'lodash/isNumber';
 import { Rule, RuleObject } from 'rc-field-form/es/interface';
 import template from '../../utils/template';
 import { NumberItem } from '../../types';

@@ -1,6 +1,6 @@
-import isNil from 'lodash-es/isNil';
-import isNumber from 'lodash-es/isNumber';
-import isString from 'lodash-es/isString';
+import isNil from 'lodash/isNil';
+import isNumber from 'lodash/isNumber';
+import isString from 'lodash/isString';
 import { Rule } from 'rc-field-form/es/interface';
 import template from '../../utils/template';
 import { StringItem } from '../../types';

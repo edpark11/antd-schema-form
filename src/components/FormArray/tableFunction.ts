@@ -1,5 +1,5 @@
-import transform from 'lodash-es/transform';
-import orderBy from 'lodash-es/orderBy';
+import transform from 'lodash/transform';
+import orderBy from 'lodash/orderBy';
 
 /**
  * 格式化数据，使值满足antd的props-type

@@ -19,9 +19,9 @@ import {
   ReactNodeArray
 } from 'react';
 import * as PropTypes from 'prop-types';
-import isNil from 'lodash-es/isNil';
-import isBoolean from 'lodash-es/isBoolean';
-import isObject from 'lodash-es/isObject';
+import isNil from 'lodash/isNil';
+import isBoolean from 'lodash/isBoolean';
+import isObject from 'lodash/isObject';
 import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { PlusCircleOutlined as IconPlusCircleOutlined, DeleteOutlined as IconDeleteOutlined } from '@ant-design/icons';
