@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,15 +35,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import isNil from 'lodash/isNil';
-import isNumber from 'lodash/isNumber';
-import template from '../../utils/template';
+Object.defineProperty(exports, "__esModule", { value: true });
+var isNil_1 = require("lodash/isNil");
+var isNumber_1 = require("lodash/isNumber");
+var template_1 = require("../../utils/template");
 function createArrayRules(languagePack, root, required) {
     var _this = this;
     var minItems = root.minItems, maxItems = root.maxItems, $minItemsMessage = root.$minItemsMessage, $maxItemsMessage = root.$maxItemsMessage;
     var rules = [];
     // 数组内元素的数量最少值
-    if (!isNil(minItems) && isNumber(minItems)) {
+    if (!isNil_1.default(minItems) && isNumber_1.default(minItems)) {
         rules.push({
             validator: function (rule, value) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
@@ -55,13 +57,13 @@ function createArrayRules(languagePack, root, required) {
                     }
                 });
             }); },
-            message: template($minItemsMessage || languagePack.rules.array.minItems, {
+            message: template_1.default($minItemsMessage || languagePack.rules.array.minItems, {
                 '0': minItems
             })
         });
     }
     // 数组内元素的数量最大值
-    if (!isNil(maxItems) && isNumber(maxItems)) {
+    if (!isNil_1.default(maxItems) && isNumber_1.default(maxItems)) {
         rules.push({
             validator: function (rule, value, callback) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
@@ -74,11 +76,11 @@ function createArrayRules(languagePack, root, required) {
                     }
                 });
             }); },
-            message: template($maxItemsMessage || languagePack.rules.array.maxItems, {
+            message: template_1.default($maxItemsMessage || languagePack.rules.array.maxItems, {
                 '0': maxItems
             })
         });
     }
     return rules;
 }
-export default createArrayRules;
+exports.default = createArrayRules;

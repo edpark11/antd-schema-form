@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,7 +10,8 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import isPlainObject from 'lodash/isPlainObject';
+Object.defineProperty(exports, "__esModule", { value: true });
+var isPlainObject_1 = require("lodash/isPlainObject");
 /**
  * object对象，格式化成表单需要的值
  * @param { object } obj: 对象
@@ -19,7 +21,7 @@ function getObjectFromValue(obj, basicId) {
     var value = {};
     for (var key in obj) {
         var item = obj[key];
-        if (isPlainObject(item) && !item._isAMomentObject) {
+        if (isPlainObject_1.default(item) && !item._isAMomentObject) {
             var bid = basicId ? basicId + "/" + key + "/properties" : key + "/properties";
             var result = getObjectFromValue(item, bid);
             value = __assign(__assign({}, value), result);
@@ -30,4 +32,4 @@ function getObjectFromValue(obj, basicId) {
     }
     return value;
 }
-export default getObjectFromValue;
+exports.default = getObjectFromValue;

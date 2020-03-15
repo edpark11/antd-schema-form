@@ -1,9 +1,11 @@
-import * as defaultLang from '../language/default.json';
-import * as zhCNLang from '../language/zh-CN.json';
-import requireJson from './utils/requireJson';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var defaultLang = require("../language/default.json");
+var zhCNLang = require("../language/zh-CN.json");
+var requireJson_1 = require("./utils/requireJson");
 // 语言包，key值小写
 var languagePack = {
-    'default': requireJson(defaultLang),
-    'zh-cn': requireJson(zhCNLang)
+    'default': requireJson_1.default(defaultLang),
+    'zh-cn': requireJson_1.default(zhCNLang)
 };
-export default languagePack;
+exports.default = languagePack;

@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * 获取schema.json下所有的key
  * @param { SchemaItem } item: 对象
@@ -38,4 +40,4 @@ function getKeysFromObject(item) {
     }
     return idArr;
 }
-export default getKeysFromObject;
+exports.default = getKeysFromObject;

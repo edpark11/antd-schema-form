@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -45,23 +46,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { Fragment, useContext } from 'react';
-import * as PropTypes from 'prop-types';
-import isArray from 'lodash/isArray';
-import { Button } from 'antd';
-import AntdSchemaFormContext from '../../context';
-import styleName from '../../utils/styleName';
-import FormString from '../FormString/FormString';
-import FormNumber from '../FormNumber/FormNumber';
-import FormBoolean from '../FormBoolean/FormBoolean';
-import FormArray from '../FormArray/FormArray';
-import getValueFromObject from '../../utils/getValueFromObject';
-import getKeysFromObject from '../../utils/getKeysFromObject';
-import createElement from '../../utils/createElement';
-import sortProperties from '../../utils/sortProperties';
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var react_1 = require("react");
+var PropTypes = require("prop-types");
+var isArray_1 = require("lodash/isArray");
+var antd_1 = require("antd");
+var context_1 = require("../../context");
+var styleName_1 = require("../../utils/styleName");
+var FormString_1 = require("../FormString/FormString");
+var FormNumber_1 = require("../FormNumber/FormNumber");
+var FormBoolean_1 = require("../FormBoolean/FormBoolean");
+var FormArray_1 = require("../FormArray/FormArray");
+var getValueFromObject_1 = require("../../utils/getValueFromObject");
+var getKeysFromObject_1 = require("../../utils/getKeysFromObject");
+var createElement_1 = require("../../utils/createElement");
+var sortProperties_1 = require("../../utils/sortProperties");
 function FormObject(props) {
-    var context = useContext(AntdSchemaFormContext);
+    var context = react_1.useContext(context_1.default);
     if (!('form' in context))
         return null; // 类型判断
     var form = context.form, customComponent = context.customComponent, languagePack = context.languagePack;
@@ -72,20 +74,20 @@ function FormObject(props) {
         var _required = !!required;
         var props = { key: id, root: root, required: _required };
         // 渲染oneOf
-        if ('oneOf' in root && root.oneOf && isArray(root.oneOf) && root.oneOf.length > 0) {
+        if ('oneOf' in root && root.oneOf && isArray_1.default(root.oneOf) && root.oneOf.length > 0) {
             // eslint-disable-next-line no-use-before-define
             return renderOneOfComponentView(root, _required);
         }
         switch (type) {
             case 'string':
-                return React.createElement(FormString, __assign({}, props));
+                return React.createElement(FormString_1.default, __assign({}, props));
             case 'integer':
             case 'number':
-                return React.createElement(FormNumber, __assign({}, props));
+                return React.createElement(FormNumber_1.default, __assign({}, props));
             case 'boolean':
-                return React.createElement(FormBoolean, __assign({}, props));
+                return React.createElement(FormBoolean_1.default, __assign({}, props));
             case 'array':
-                return React.createElement(FormArray, __assign({}, props));
+                return React.createElement(FormArray_1.default, __assign({}, props));
             case 'object':
                 // eslint-disable-next-line no-use-before-define
                 return renderObjectComponentView(root);
@@ -111,7 +113,7 @@ function FormObject(props) {
         if (customComponent) {
             oneOfElement = $oneOfComponentType && $oneOfComponentType in customComponent
                 ? customComponent[$oneOfComponentType](root, form, element)
-                : createElement(customComponent.defaultOneOf, [root, form, element]);
+                : createElement_1.default(customComponent.defaultOneOf, [root, form, element]);
         }
         return oneOfElement;
     }
@@ -119,7 +121,7 @@ function FormObject(props) {
     function renderObjectComponentView(root) {
         var $componentType = root.$componentType;
         var required = root.required || [];
-        var properties = sortProperties(root.properties || {});
+        var properties = sortProperties_1.default(root.properties || {});
         var element = [];
         // 判断object下组件的类型并渲染，只要有一个有值就要显示
         for (var key in properties) {
@@ -129,7 +131,7 @@ function FormObject(props) {
         if (customComponent) {
             objectElement = ($componentType && $componentType in customComponent)
                 ? customComponent[$componentType](root, form, element)
-                : createElement(customComponent.defaultObject, [root, form, element]);
+                : createElement_1.default(customComponent.defaultObject, [root, form, element]);
         }
         return objectElement;
     }
@@ -142,11 +144,11 @@ function FormObject(props) {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
-                        keys = getKeysFromObject(formObjectRoot);
+                        keys = getKeysFromObject_1.default(formObjectRoot);
                         return [4 /*yield*/, form.validateFields(keys)];
                     case 1:
                         formValue = _c.sent();
-                        value = getValueFromObject(formValue);
+                        value = getValueFromObject_1.default(formValue);
                         onOk && onOk(form, value, keys);
                         return [3 /*break*/, 3];
                     case 2:
@@ -166,17 +168,17 @@ function FormObject(props) {
     // 确认和取消按钮
     function footerView() {
         if (onOk || onCancel) {
-            return (React.createElement("div", { className: styleName('object-click-button-box') },
+            return (React.createElement("div", { className: styleName_1.default('object-click-button-box') },
                 onOk
-                    ? React.createElement(Button, { type: "primary", onClick: handleOkClick }, okText)
+                    ? React.createElement(antd_1.Button, { type: "primary", onClick: handleOkClick }, okText)
                     : null,
-                onCancel ? (React.createElement(Button, { className: onOk ? styleName('object-cancel') : undefined, onClick: handleCancelClick }, cancelText)) : null));
+                onCancel ? (React.createElement(antd_1.Button, { className: onOk ? styleName_1.default('object-cancel') : undefined, onClick: handleCancelClick }, cancelText)) : null));
         }
         else {
             return null;
         }
     }
-    return (React.createElement(Fragment, null,
+    return (React.createElement(react_1.Fragment, null,
         renderComponentByTypeView(formObjectRoot),
         footer ? footer(form) : footerView()));
 }
@@ -194,4 +196,4 @@ FormObject.propTypes = {
     ]),
     footer: PropTypes.func
 };
-export default FormObject;
+exports.default = FormObject;

@@ -1,6 +1,8 @@
-import { isObject } from 'lodash';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var lodash_1 = require("lodash");
 function isModule(value) {
-    return isObject(value) && Object.prototype.toString.call(value) === '[object Module]';
+    return lodash_1.isObject(value) && Object.prototype.toString.call(value) === '[object Module]';
 }
 /**
  * 加载json文件
@@ -10,10 +12,10 @@ function isModule(value) {
  */
 function requireJson(modules) {
     if (isModule(modules) && 'default' in modules) {
-        return modules["default"];
+        return modules.default;
     }
     else {
         return modules;
     }
 }
-export default requireJson;
+exports.default = requireJson;

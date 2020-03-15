@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -20,19 +21,22 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import * as React from 'react';
-import { useState, useEffect, forwardRef } from 'react';
-import SchemaForm from './SchemaForm';
-import components from './customComponent';
-import getKeysFromObject from './utils/getKeysFromObject';
-import getObjectFromValue from './utils/getObjectFromValue';
-import getValueFromObject from './utils/getValueFromObject';
-export default forwardRef(function (props, ref) {
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var react_1 = require("react");
+var SchemaForm_1 = require("./SchemaForm");
+var customComponent_1 = require("./customComponent");
+var getKeysFromObject_1 = require("./utils/getKeysFromObject");
+exports.getKeysFromObject = getKeysFromObject_1.default;
+var getObjectFromValue_1 = require("./utils/getObjectFromValue");
+exports.getObjectFromValue = getObjectFromValue_1.default;
+var getValueFromObject_1 = require("./utils/getValueFromObject");
+exports.getValueFromObject = getValueFromObject_1.default;
+exports.default = react_1.forwardRef(function (props, ref) {
     var customComponent = props.customComponent, otherProps = __rest(props, ["customComponent"]);
-    var _a = useState(Object.assign(components, customComponent || {})), custom = _a[0], setCustom = _a[1];
-    useEffect(function () {
-        setCustom(Object.assign(components, customComponent || {}));
+    var _a = react_1.useState(Object.assign(customComponent_1.default, customComponent || {})), custom = _a[0], setCustom = _a[1];
+    react_1.useEffect(function () {
+        setCustom(Object.assign(customComponent_1.default, customComponent || {}));
     }, [customComponent]);
-    return React.createElement(SchemaForm, __assign({ ref: ref, customComponent: custom }, otherProps));
+    return React.createElement(SchemaForm_1.default, __assign({ ref: ref, customComponent: custom }, otherProps));
 });
-export { getKeysFromObject, getObjectFromValue, getValueFromObject };

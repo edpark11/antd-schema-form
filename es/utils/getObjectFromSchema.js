@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,7 +10,8 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import * as moment from 'moment';
+Object.defineProperty(exports, "__esModule", { value: true });
+var moment = require("moment");
 /**
  * 从schema里面提取出$defaultValue
  * @param { SchemaJson } schemaJsonItem: 对象
@@ -43,4 +45,4 @@ function getObjectFromSchema(schemaJsonItem, id) {
     }
     return value;
 }
-export default getObjectFromSchema;
+exports.default = getObjectFromSchema;

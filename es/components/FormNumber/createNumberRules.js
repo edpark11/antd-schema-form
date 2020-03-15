@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,13 +35,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import isNil from 'lodash/isNil';
-import isNumber from 'lodash/isNumber';
-import template from '../../utils/template';
+Object.defineProperty(exports, "__esModule", { value: true });
+var isNil_1 = require("lodash/isNil");
+var isNumber_1 = require("lodash/isNumber");
+var template_1 = require("../../utils/template");
 function createNumberRules(languagePack, root, required, isInteger) {
     var _this = this;
     var $required = root.$required, $requiredMessage = root.$requiredMessage, minimum = root.minimum, maximum = root.maximum, $minimumMessage = root.$minimumMessage, $maximumMessage = root.$maximumMessage, $integer = root.$integer, $integerMessage = root.$integerMessage, $enumMessage = root.$enumMessage;
-    var enums = root["enum"];
+    var enums = root.enum;
     var rules = [];
     // 判断表单是否必填
     if ($required || required) {
@@ -53,8 +55,8 @@ function createNumberRules(languagePack, root, required, isInteger) {
     if (enums) {
         rules.push({
             type: 'enum',
-            "enum": enums,
-            message: template($enumMessage || languagePack.rules["enum"], {
+            enum: enums,
+            message: template_1.default($enumMessage || languagePack.rules.enum, {
                 '0': "[" + enums.join(', ') + "]"
             })
         });
@@ -67,7 +69,7 @@ function createNumberRules(languagePack, root, required, isInteger) {
         });
     }
     // 最小值
-    if (!isNil(minimum) && isNumber(minimum)) {
+    if (!isNil_1.default(minimum) && isNumber_1.default(minimum)) {
         rules.push({
             validator: function (rule, value) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
@@ -85,13 +87,13 @@ function createNumberRules(languagePack, root, required, isInteger) {
                     }
                 });
             }); },
-            message: template($minimumMessage || languagePack.rules.number.minimum, {
+            message: template_1.default($minimumMessage || languagePack.rules.number.minimum, {
                 '0': minimum
             })
         });
     }
     // 最大值
-    if (!isNil(maximum) && isNumber(maximum)) {
+    if (!isNil_1.default(maximum) && isNumber_1.default(maximum)) {
         rules.push({
             validator: function (rule, value) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
@@ -109,11 +111,11 @@ function createNumberRules(languagePack, root, required, isInteger) {
                     }
                 });
             }); },
-            message: template($maximumMessage || languagePack.rules.number.maximum, {
+            message: template_1.default($maximumMessage || languagePack.rules.number.maximum, {
                 maximum: maximum
             })
         });
     }
     return rules;
 }
-export default createNumberRules;
+exports.default = createNumberRules;

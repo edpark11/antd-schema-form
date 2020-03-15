@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var prefix = 'schema-form-';
 /**
  * 返回一个类名
@@ -6,4 +8,4 @@ var prefix = 'schema-form-';
 function styleName(className) {
     return "" + prefix + className;
 }
-export default styleName;
+exports.default = styleName;

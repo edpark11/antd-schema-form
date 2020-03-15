@@ -1,3 +1,5 @@
-import { createContext } from 'react';
-var AntdSchemaFormContext = createContext({});
-export default AntdSchemaFormContext;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = require("react");
+var AntdSchemaFormContext = react_1.createContext({});
+exports.default = AntdSchemaFormContext;

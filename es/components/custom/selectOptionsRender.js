@@ -1,9 +1,11 @@
-import * as React from 'react';
-import { Select } from 'antd';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var antd_1 = require("antd");
 /* 渲染select的下拉框 */
 function selectOptionsRender(options) {
     return options.map(function (item, index) {
-        return React.createElement(Select.Option, { key: "" + index, value: item.value }, item.label);
+        return React.createElement(antd_1.Select.Option, { key: "" + index, value: item.value }, item.label);
     });
 }
-export default selectOptionsRender;
+exports.default = selectOptionsRender;

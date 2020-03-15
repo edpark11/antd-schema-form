@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /* 创建组件 */
 function createElement(fn, args) {
     if (fn) {
@@ -7,4 +9,4 @@ function createElement(fn, args) {
         return null;
     }
 }
-export default createElement;
+exports.default = createElement;

@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /* 简单的template模板 */
 function template(tpl, data) {
     var result = tpl;
@@ -7,4 +9,4 @@ function template(tpl, data) {
     }
     return result;
 }
-export default template;
+exports.default = template;

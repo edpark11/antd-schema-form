@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,17 +10,18 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import * as React from 'react';
-import { useContext } from 'react';
-import * as PropTypes from 'prop-types';
-import { Form } from 'antd';
-import classNames from 'classnames';
-import omit from 'lodash/omit';
-import AntdSchemaFormContext from '../../context';
-import styleName from '../../utils/styleName';
-import createElement from '../../utils/createElement';
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var react_1 = require("react");
+var PropTypes = require("prop-types");
+var antd_1 = require("antd");
+var classnames_1 = require("classnames");
+var omit_1 = require("lodash/omit");
+var context_1 = require("../../context");
+var styleName_1 = require("../../utils/styleName");
+var createElement_1 = require("../../utils/createElement");
 function FormBoolean(props) {
-    var context = useContext(AntdSchemaFormContext);
+    var context = react_1.useContext(context_1.default);
     if (!('form' in context))
         return null; // 类型判断
     var form = context.form, customComponent = context.customComponent;
@@ -29,11 +31,11 @@ function FormBoolean(props) {
     if (customComponent) {
         element = ($componentType && $componentType in customComponent)
             ? customComponent[$componentType](root, form, required)
-            : createElement(customComponent.defaultBoolean, [root, form, required]);
+            : createElement_1.default(customComponent.defaultBoolean, [root, form, required]);
     }
-    return element ? (React.createElement(Form.Item, __assign({ className: classNames($hidden ? styleName('hidden') : undefined, $formItemProps === null || $formItemProps === void 0 ? void 0 : $formItemProps.className), name: id, label: title, valuePropName: "checked" }, omit($formItemProps, ['className'])), element)) : null;
+    return element ? (React.createElement(antd_1.Form.Item, __assign({ className: classnames_1.default($hidden ? styleName_1.default('hidden') : undefined, $formItemProps === null || $formItemProps === void 0 ? void 0 : $formItemProps.className), name: id, label: title, valuePropName: "checked" }, omit_1.default($formItemProps, ['className'])), element)) : null;
 }
 FormBoolean.propTypes = {
     root: PropTypes.object
 };
-export default FormBoolean;
+exports.default = FormBoolean;
