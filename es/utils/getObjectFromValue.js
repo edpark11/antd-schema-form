@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 import isPlainObject from 'lodash/isPlainObject';
 /**
  * object对象，格式化成表单需要的值
@@ -5,16 +16,16 @@ import isPlainObject from 'lodash/isPlainObject';
  * @param { string } basicId: 前置id
  */
 function getObjectFromValue(obj, basicId) {
-    let value = {};
-    for (const key in obj) {
-        const item = obj[key];
+    var value = {};
+    for (var key in obj) {
+        var item = obj[key];
         if (isPlainObject(item) && !item._isAMomentObject) {
-            const bid = basicId ? `${basicId}/${key}/properties` : `${key}/properties`;
-            const result = getObjectFromValue(item, bid);
-            value = { ...value, ...result };
+            var bid = basicId ? basicId + "/" + key + "/properties" : key + "/properties";
+            var result = getObjectFromValue(item, bid);
+            value = __assign(__assign({}, value), result);
         }
         else {
-            value[basicId ? `${basicId}/${key}` : key] = item;
+            value[basicId ? basicId + "/" + key : key] = item;
         }
     }
     return value;

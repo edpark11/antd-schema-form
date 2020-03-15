@@ -1,3 +1,3 @@
 import { createContext } from 'react';
-const AntdSchemaFormContext = createContext({});
+var AntdSchemaFormContext = createContext({});
 export default AntdSchemaFormContext;

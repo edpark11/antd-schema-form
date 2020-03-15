@@ -10,7 +10,7 @@ function isModule(value) {
  */
 function requireJson(modules) {
     if (isModule(modules) && 'default' in modules) {
-        return modules.default;
+        return modules["default"];
     }
     else {
         return modules;

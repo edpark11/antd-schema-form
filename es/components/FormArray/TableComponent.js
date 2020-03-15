@@ -16,37 +16,38 @@ import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
 import template from '../../utils/template';
 // 拖拽相关变量
-const tableDragClassName = [
+var tableDragClassName = [
     styleName('array-drop-over-downward'),
     styleName('array-drop-over-upward')
 ];
 /* 表格的className */
 function tableClassName(hasErr) {
-    return classNames(styleName('array-table-component'), {
-        [styleName('array-table-component-has-error')]: hasErr
-    });
+    var _a;
+    return classNames(styleName('array-table-component'), (_a = {},
+        _a[styleName('array-table-component-has-error')] = hasErr,
+        _a));
 }
 function TableComponent(props) {
-    const context = useContext(AntdSchemaFormContext);
+    var context = useContext(AntdSchemaFormContext);
     if (!('form' in context))
         return null; // 类型判断
-    const { form, languagePack, customTableRender } = context;
-    const { root } = props;
-    const { id, items, minItems, maxItems, $minItemsMessage, $maxItemsMessage } = root;
-    const { type, properties, title, $tableRender } = items;
-    const changeIndexRef = useRef(null);
-    let dragTargetId = undefined; // 被拖拽的id
-    let dragTargetIndex = undefined; // 被拖拽的index
+    var form = context.form, languagePack = context.languagePack, customTableRender = context.customTableRender;
+    var root = props.root;
+    var id = root.id, items = root.items, minItems = root.minItems, maxItems = root.maxItems, $minItemsMessage = root.$minItemsMessage, $maxItemsMessage = root.$maxItemsMessage;
+    var type = items.type, properties = items.properties, title = items.title, $tableRender = items.$tableRender;
+    var changeIndexRef = useRef(null);
+    var dragTargetId = undefined; // 被拖拽的id
+    var dragTargetIndex = undefined; // 被拖拽的index
     // 添加和修改数据的抽屉的显示和隐藏
-    const [isDisplayDataDrawer, setIsDisplayDataDrawer] = useState(false);
+    var _a = useState(false), isDisplayDataDrawer = _a[0], setIsDisplayDataDrawer = _a[1];
     // 编辑框修改位置的状态
-    const [inputDisplayIndex, setInputDisplayIndex] = useState(undefined);
+    var _b = useState(undefined), inputDisplayIndex = _b[0], setInputDisplayIndex = _b[1];
     // 编辑框的值
-    const [inputChangeIndex, setInputChangeIndex] = useState(undefined);
+    var _c = useState(undefined), inputChangeIndex = _c[0], setInputChangeIndex = _c[1];
     // 多选框
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    var _d = useState([]), selectedRowKeys = _d[0], setSelectedRowKeys = _d[1];
     // 当前表格编辑的对象
-    const [editIndex, setEditIndex] = useState(undefined);
+    var _e = useState(undefined), editIndex = _e[0], setEditIndex = _e[1];
     // 表单
     function triggerChange(changedValue) {
         if (props.onChange) {
@@ -55,10 +56,10 @@ function TableComponent(props) {
     }
     // 调换位置
     function moveRow(dragIndex, hoverIndex) {
-        let tableValue = form.getFieldValue(id);
+        var tableValue = form.getFieldValue(id);
         tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
-        const dragRowItem = tableValue[dragIndex];
-        const newData = update({ tableValue }, {
+        var dragRowItem = tableValue[dragIndex];
+        var newData = update({ tableValue: tableValue }, {
             tableValue: {
                 $splice: [[dragIndex, 1], [hoverIndex, 0, dragRowItem]]
             }
@@ -67,9 +68,9 @@ function TableComponent(props) {
     }
     // 开始拖拽
     function handleTableDragStart(event) {
-        const target = event.target;
-        const id = target['dataset'].id;
-        const index = Number(target['dataset'].index);
+        var target = event.target;
+        var id = target['dataset'].id;
+        var index = Number(target['dataset'].index);
         dragTargetId = id;
         dragTargetIndex = index;
     }
@@ -77,8 +78,8 @@ function TableComponent(props) {
     function handleTableDragEnter(event) {
         event.preventDefault();
         // 获取目标的信息
-        const target = event.target;
-        let fatherTarget = undefined;
+        var target = event.target;
+        var fatherTarget = undefined;
         // 获取父级节点
         if (target['nodeName'] === 'TD' && target['parentNode']['nodeName'] === 'TR') {
             fatherTarget = target['parentNode'];
@@ -87,8 +88,8 @@ function TableComponent(props) {
             fatherTarget = target['parentNode']['parentNode'];
         }
         if (fatherTarget !== undefined) {
-            const overId = fatherTarget['dataset'].id;
-            const overIndex = Number(fatherTarget['dataset'].index);
+            var overId = fatherTarget['dataset'].id;
+            var overIndex = Number(fatherTarget['dataset'].index);
             // 添加样式
             if (dragTargetId !== undefined && dragTargetIndex !== undefined && dragTargetId === overId) {
                 if (overIndex > dragTargetIndex) {
@@ -104,8 +105,8 @@ function TableComponent(props) {
     function handleTableDragLeave(event) {
         event.preventDefault();
         // 获取目标的信息
-        const target = event['target'];
-        let fatherTarget = undefined;
+        var target = event['target'];
+        var fatherTarget = undefined;
         // 获取父级节点
         if (target['nodeName'] === 'TD' && target['parentNode']['nodeName'] === 'TR') {
             fatherTarget = target['parentNode'];
@@ -114,7 +115,7 @@ function TableComponent(props) {
             fatherTarget = target['parentNode']['parentNode'];
         }
         if (fatherTarget !== undefined) {
-            const overId = fatherTarget['dataset'].id;
+            var overId = fatherTarget['dataset'].id;
             // 移除样式
             if (dragTargetId !== undefined && dragTargetIndex !== undefined && dragTargetId === overId) {
                 fatherTarget.classList.remove(tableDragClassName[0]);
@@ -130,8 +131,8 @@ function TableComponent(props) {
     function handleTableDrop(event) {
         event.preventDefault();
         // 获取目标的信息
-        const target = event['target'];
-        let fatherTarget = undefined;
+        var target = event['target'];
+        var fatherTarget = undefined;
         // 获取父级节点
         if (target['nodeName'] === 'TD' && target['parentNode']['nodeName'] === 'TR') {
             fatherTarget = target['parentNode'];
@@ -140,8 +141,8 @@ function TableComponent(props) {
             fatherTarget = target['parentNode']['parentNode'];
         }
         if (fatherTarget !== undefined) {
-            const overId = fatherTarget['dataset'].id;
-            const overIndex = Number(fatherTarget['dataset'].index);
+            var overId = fatherTarget['dataset'].id;
+            var overIndex = Number(fatherTarget['dataset'].index);
             // 修改数据
             if (dragTargetId !== undefined && dragTargetIndex !== undefined && dragTargetId === overId) {
                 moveRow(dragTargetIndex, overIndex);
@@ -151,19 +152,19 @@ function TableComponent(props) {
         dragTargetId = undefined;
         dragTargetIndex = undefined;
         // 清除样式
-        const c0 = document.querySelector(`.${tableDragClassName[0]}`);
-        const c1 = document.querySelector(`.${tableDragClassName[1]}`);
+        var c0 = document.querySelector("." + tableDragClassName[0]);
+        var c1 = document.querySelector("." + tableDragClassName[1]);
         c0 && c0.classList.remove(tableDragClassName[0]);
         c1 && c1.classList.remove(tableDragClassName[1]);
     }
     // table components
-    const components = {
+    var components = {
         body: {
-            row: (item) => {
+            row: function (item) {
                 var _a, _b;
-                const { children, className } = item;
+                var children = item.children, className = item.className;
                 // @ts-ignore
-                const index = (_b = (_a = children[0]) === null || _a === void 0 ? void 0 : _a.props) === null || _b === void 0 ? void 0 : _b.index;
+                var index = (_b = (_a = children[0]) === null || _a === void 0 ? void 0 : _a.props) === null || _b === void 0 ? void 0 : _b.index;
                 return (React.createElement("tr", { className: className, draggable: true, "data-id": id, "data-index": index, onDragStart: handleTableDragStart, onDragEnter: handleTableDragEnter, onDragLeave: handleTableDragLeave, onDragOver: handleTableDragOver, onDrop: handleTableDrop }, children));
             }
         }
@@ -179,10 +180,10 @@ function TableComponent(props) {
     }
     // 编辑位置框失去焦点
     function handleIndexInputBlur(index, event) {
-        let tableValue = form.getFieldValue(id);
+        var tableValue = form.getFieldValue(id);
         tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
-        const length = tableValue.length;
-        let newIndex = Number(inputChangeIndex) - 1;
+        var length = tableValue.length;
+        var newIndex = Number(inputChangeIndex) - 1;
         if (inputChangeIndex && newIndex !== index && /^[0-9]+$/.test(inputChangeIndex)) {
             if (newIndex < 0)
                 newIndex = 0;
@@ -196,10 +197,10 @@ function TableComponent(props) {
     // 添加和修改数据
     function handleAddOrEditDataClick(objectForm, objectValue, keys) {
         // 获取需要验证和获取值的key
-        const value = form.getFieldsValue(keys);
-        const formatValue = formatValueBeforeGetValue(value, id);
-        const result = getValueFromObject(formatValue);
-        let tableValue = form.getFieldValue(id);
+        var value = form.getFieldsValue(keys);
+        var formatValue = formatValueBeforeGetValue(value, id);
+        var result = getValueFromObject(formatValue);
+        var tableValue = form.getFieldValue(id);
         tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
         // 判断是修改还是添加
         if (editIndex === undefined) {
@@ -220,7 +221,7 @@ function TableComponent(props) {
     }
     // 删除数据
     function handleDeleteDataClick(index, event) {
-        let tableValue = form.getFieldValue(id);
+        var tableValue = form.getFieldValue(id);
         tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
         tableValue.splice(index, 1);
         triggerChange(tableValue);
@@ -242,36 +243,38 @@ function TableComponent(props) {
     }
     // 删除选中的数据
     function handleDeleteSelectDataClick(event) {
-        const id = root.id;
-        let tableValue = form.getFieldValue(id);
+        var id = root.id;
+        var tableValue = form.getFieldValue(id);
         tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
         // 删除选中的数据
-        const sortSelectedRowKeys = sortIndex(selectedRowKeys);
-        for (const item of sortSelectedRowKeys)
+        var sortSelectedRowKeys = sortIndex(selectedRowKeys);
+        for (var _i = 0, sortSelectedRowKeys_1 = sortSelectedRowKeys; _i < sortSelectedRowKeys_1.length; _i++) {
+            var item = sortSelectedRowKeys_1[_i];
             tableValue.splice(item, 1);
+        }
         triggerChange(tableValue);
         setSelectedRowKeys([]);
     }
     // columns
     function columns() {
-        const columnArr = [];
+        var columnArr = [];
         // 渲染调整数组位置的编辑框
         columnArr.push({
             title: '',
             key: 'lineNumber',
             align: 'center',
             width: 65,
-            render: (value, record, index) => {
+            render: function (value, record, index) {
                 if (inputDisplayIndex === undefined || inputDisplayIndex !== index) {
-                    return (React.createElement("a", { onClick: (event) => handleInputDisplayClick(index, event) }, index + 1));
+                    return (React.createElement("a", { onClick: function (event) { return handleInputDisplayClick(index, event); } }, index + 1));
                 }
                 else {
-                    return (React.createElement(Input, { ref: changeIndexRef, value: inputChangeIndex, onChange: handleIndexInputChange, onBlur: (event) => handleIndexInputBlur(index, event), onPressEnter: (event) => handleIndexInputBlur(index, event) }));
+                    return (React.createElement(Input, { ref: changeIndexRef, value: inputChangeIndex, onChange: handleIndexInputChange, onBlur: function (event) { return handleIndexInputBlur(index, event); }, onPressEnter: function (event) { return handleIndexInputBlur(index, event); } }));
                 }
             }
         });
         // 渲染函数
-        const renderCallback = (value, record, index) => {
+        var renderCallback = function (value, record, index) {
             if (isBoolean(value)) {
                 return String(value);
             }
@@ -283,19 +286,19 @@ function TableComponent(props) {
             }
         };
         // 渲染自定义render
-        const createRenderCallback = (renderItem, customFunc) => {
-            return (value, record, index) => {
+        var createRenderCallback = function (renderItem, customFunc) {
+            return function (value, record, index) {
                 return customFunc(value, record, index, renderItem, form);
             };
         };
         if (type === 'object') {
-            for (const key in properties) {
-                const propItem = properties[key];
+            for (var key in properties) {
+                var propItem = properties[key];
                 // 隐藏列
                 if (!propItem.$tableColumnHidden) {
                     columnArr.push({
                         title: propItem.title,
-                        key,
+                        key: key,
                         dataIndex: key,
                         render: (propItem.$tableRender && customTableRender && (propItem.$tableRender in customTableRender))
                             ? createRenderCallback(propItem, customTableRender[propItem.$tableRender])
@@ -306,7 +309,7 @@ function TableComponent(props) {
         }
         else {
             columnArr.push({
-                title,
+                title: title,
                 key: 'value',
                 dataIndex: 'value',
                 render: ($tableRender && customTableRender && ($tableRender in customTableRender))
@@ -318,10 +321,10 @@ function TableComponent(props) {
             title: languagePack && languagePack.formArray.operating,
             key: 'handle',
             width: 160,
-            render: (value, record, index) => {
+            render: function (value, record, index) {
                 return (React.createElement(Button.Group, null,
-                    React.createElement(Button, { onClick: (event) => handleDrawEditDataDisplayClick(index, event) }, languagePack.formArray.operatingEdit),
-                    React.createElement(Popconfirm, { title: languagePack.formArray.operatingPopconfirmTitle, onConfirm: (event) => handleDeleteDataClick(index, event) },
+                    React.createElement(Button, { onClick: function (event) { return handleDrawEditDataDisplayClick(index, event); } }, languagePack.formArray.operatingEdit),
+                    React.createElement(Popconfirm, { title: languagePack.formArray.operatingPopconfirmTitle, onConfirm: function (event) { return handleDeleteDataClick(index, event); } },
                         React.createElement(Button, { type: "primary", danger: true }, languagePack.formArray.operatingDelete))));
             }
         });
@@ -337,18 +340,18 @@ function TableComponent(props) {
         // 打开抽屉时需要赋值
         // eslint-disable-next-line @typescript-eslint/tslint/config
         if (editIndex !== undefined) {
-            let tableValue = form.getFieldValue(id);
+            var tableValue = form.getFieldValue(id);
             tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
-            const itemValue = tableValue[editIndex];
-            const result = getObjectFromValue({ items: itemValue }, id);
+            var itemValue = tableValue[editIndex];
+            var result = getObjectFromValue({ items: itemValue }, id);
             form.setFieldsValue(result);
         }
     }, [isDisplayDataDrawer, editIndex]);
-    const inputNotDisplay = isNil(inputDisplayIndex);
-    let value = form.getFieldValue(id);
+    var inputNotDisplay = isNil(inputDisplayIndex);
+    var value = form.getFieldValue(id);
     value = isNil(value) ? [] : value;
     // 对数组内的元素数量进行验证
-    let arrayRulesVerificationResult = undefined;
+    var arrayRulesVerificationResult = undefined;
     if (minItems !== undefined && value.length < minItems) {
         arrayRulesVerificationResult = template($minItemsMessage || languagePack.rules.array.minItems, {
             '0': minItems
@@ -360,13 +363,13 @@ function TableComponent(props) {
         });
     }
     return (React.createElement(Fragment, null,
-        React.createElement(Table, { className: tableClassName(arrayRulesVerificationResult !== undefined), size: "middle", dataSource: items.type === 'object' ? value : formatTableValue(value), columns: columns(), bordered: true, title: () => [
-                React.createElement(Button, { key: "add", type: "primary", icon: React.createElement(IconPlusCircleOutlined, null), onClick: (event) => handleDrawerDisplayClick(true, event) }, languagePack.formArray.operatingAdd),
-                React.createElement(Popconfirm, { key: "delete", title: languagePack.formArray.deleteSelectedText, onConfirm: (event) => handleDeleteSelectDataClick(event) },
+        React.createElement(Table, { className: tableClassName(arrayRulesVerificationResult !== undefined), size: "middle", dataSource: items.type === 'object' ? value : formatTableValue(value), columns: columns(), bordered: true, title: function () { return [
+                React.createElement(Button, { key: "add", type: "primary", icon: React.createElement(IconPlusCircleOutlined, null), onClick: function (event) { return handleDrawerDisplayClick(true, event); } }, languagePack.formArray.operatingAdd),
+                React.createElement(Popconfirm, { key: "delete", title: languagePack.formArray.deleteSelectedText, onConfirm: function (event) { return handleDeleteSelectDataClick(event); } },
                     React.createElement(Button, { className: styleName('array-deleteAll'), type: "primary", danger: true, icon: React.createElement(IconDeleteOutlined, null) }, languagePack.formArray.deleteSelected))
-            ], rowKey: (item, index) => `${index}`, rowSelection: {
+            ]; }, rowKey: function (item, index) { return "" + index; }, rowSelection: {
                 type: 'checkbox',
-                selectedRowKeys,
+                selectedRowKeys: selectedRowKeys,
                 onChange: handleColumnCheckboxChange
             }, components: inputNotDisplay ? components : undefined, pagination: false }),
         React.createElement("p", { className: styleName('array-table-rules-verification-str') }, arrayRulesVerificationResult),
@@ -375,7 +378,7 @@ function TableComponent(props) {
                 // eslint-disable-next-line @typescript-eslint/tslint/config
                 okText: editIndex !== undefined ? undefined : languagePack.formObject.addOkText, 
                 // eslint-disable-next-line @typescript-eslint/tslint/config
-                cancelText: editIndex !== undefined ? undefined : languagePack.formObject.addCancelText, onOk: handleAddOrEditDataClick, onCancel: () => handleDrawerDisplayClick(false) }))));
+                cancelText: editIndex !== undefined ? undefined : languagePack.formObject.addCancelText, onOk: handleAddOrEditDataClick, onCancel: function () { return handleDrawerDisplayClick(false); } }))));
 }
 TableComponent.propTypes = {
     root: PropTypes.object

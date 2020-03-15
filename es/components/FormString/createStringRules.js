@@ -3,9 +3,9 @@ import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
 import template from '../../utils/template';
 function createStringRules(languagePack, root, required) {
-    const { $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage, $maxLengthMessage, $length, $lengthMessage, $enumMessage } = root;
-    const enums = root.enum;
-    const rules = [];
+    var $required = root.$required, $requiredMessage = root.$requiredMessage, pattern = root.pattern, $patternOption = root.$patternOption, $patternMessage = root.$patternMessage, minLength = root.minLength, maxLength = root.maxLength, $minLengthMessage = root.$minLengthMessage, $maxLengthMessage = root.$maxLengthMessage, $length = root.$length, $lengthMessage = root.$lengthMessage, $enumMessage = root.$enumMessage;
+    var enums = root["enum"];
+    var rules = [];
     // 判断表单是否必填
     if ($required === true || required === true) {
         rules.push({
@@ -18,9 +18,9 @@ function createStringRules(languagePack, root, required) {
     if (enums) {
         rules.push({
             type: 'enum',
-            enum: enums,
-            message: template($enumMessage || languagePack.rules.enum, {
-                '0': `[${enums.join(', ')}]`
+            "enum": enums,
+            message: template($enumMessage || languagePack.rules["enum"], {
+                '0': "[" + enums.join(', ') + "]"
             })
         });
     }
@@ -53,11 +53,11 @@ function createStringRules(languagePack, root, required) {
     }
     // 正则表达式
     if (pattern) {
-        const reg = new RegExp(pattern, isString($patternOption) ? $patternOption : undefined);
+        var reg = new RegExp(pattern, isString($patternOption) ? $patternOption : undefined);
         rules.push({
             pattern: reg,
             message: template($patternMessage || languagePack.rules.string.pattern, {
-                '0': `/${pattern}/${isString($patternOption) ? $patternOption : ''}`
+                '0': "/" + pattern + "/" + (isString($patternOption) ? $patternOption : '')
             })
         });
     }

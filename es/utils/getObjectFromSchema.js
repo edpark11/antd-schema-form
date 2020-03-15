@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 import * as moment from 'moment';
 /**
  * 从schema里面提取出$defaultValue
@@ -5,17 +16,17 @@ import * as moment from 'moment';
  * @param { string } id: 可能不存在id，使用上一个对象的id
  */
 function getObjectFromSchema(schemaJsonItem, id) {
-    let value = {};
+    var value = {};
     if (schemaJsonItem.type === 'object') {
-        for (const key in schemaJsonItem.properties) {
-            value = { ...value, ...getObjectFromSchema(schemaJsonItem.properties[key]) };
+        for (var key in schemaJsonItem.properties) {
+            value = __assign(__assign({}, value), getObjectFromSchema(schemaJsonItem.properties[key]));
         }
     }
     else if (schemaJsonItem.oneOf && schemaJsonItem.oneOf.length > 0) {
-        const index = (('$oneOfIndex' in schemaJsonItem) && typeof schemaJsonItem.$oneOfIndex === 'number')
+        var index = (('$oneOfIndex' in schemaJsonItem) && typeof schemaJsonItem.$oneOfIndex === 'number')
             ? schemaJsonItem.$oneOfIndex
             : 0;
-        value = { ...value, ...getObjectFromSchema(schemaJsonItem.oneOf[index]) };
+        value = __assign(__assign({}, value), getObjectFromSchema(schemaJsonItem.oneOf[index]));
     }
     else if ('$defaultValue' in schemaJsonItem) {
         if (schemaJsonItem.$defaultValue

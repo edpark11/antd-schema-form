@@ -1,19 +1,19 @@
 import { defaultString, textArea, select, radio, date, password, defaultNumber, defaultBoolean, switchComponent, defaultArray, checkboxGroup, multipleOrTags, defaultObject, defaultOneOf } from './components/custom/custom';
-const customComponent = {
-    defaultString,
-    textArea,
-    select,
-    radio,
-    date,
-    password,
-    defaultNumber,
-    defaultBoolean,
-    switch: switchComponent,
-    defaultArray,
-    checkboxGroup,
+var customComponent = {
+    defaultString: defaultString,
+    textArea: textArea,
+    select: select,
+    radio: radio,
+    date: date,
+    password: password,
+    defaultNumber: defaultNumber,
+    defaultBoolean: defaultBoolean,
+    "switch": switchComponent,
+    defaultArray: defaultArray,
+    checkboxGroup: checkboxGroup,
     multiple: multipleOrTags,
     tags: multipleOrTags,
-    defaultObject,
-    defaultOneOf
+    defaultObject: defaultObject,
+    defaultOneOf: defaultOneOf
 };
 export default customComponent;

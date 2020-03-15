@@ -6,9 +6,9 @@ import isPlainObject from 'lodash/isPlainObject';
  * @param { string } basicId: 格式化数据的id
  */
 export function formatValueBeforeGetValue(formValue, basicId) {
-    const reg = new RegExp(`^${basicId.replace(/\$/g, '\\$')}/`);
+    var reg = new RegExp("^" + basicId.replace(/\$/g, '\\$') + "/");
     return transform(formValue, function (result, value, key) {
-        const formatKey = key.replace(reg, '');
+        var formatKey = key.replace(reg, '');
         result[formatKey] = value;
     }, {});
 }
@@ -17,16 +17,16 @@ export function formatValueBeforeGetValue(formValue, basicId) {
  * @param { object } value: 表单值
  */
 function getValueFromObject(value) {
-    const obj = {};
-    for (const key in value) {
-        const keyArr = key.split('/');
-        const len = keyArr.length;
-        let index = 0;
-        let point = obj;
+    var obj = {};
+    for (var key in value) {
+        var keyArr = key.split('/');
+        var len = keyArr.length;
+        var index = 0;
+        var point = obj;
         while (index < len) {
             // 判断是否为对象
-            const nowKey = keyArr[index];
-            const nextKey = keyArr[index + 1];
+            var nowKey = keyArr[index];
+            var nextKey = keyArr[index + 1];
             if (nextKey && nextKey === 'properties') {
                 if (!isPlainObject(point[nowKey]))
                     point[nowKey] = {};
