@@ -14,8 +14,8 @@ yarn-error.log
 .babelCache
 
 # build
-lib
-es
-style/*.css
+# lib
+# es
+# style/*.css
 
 .DS_Store

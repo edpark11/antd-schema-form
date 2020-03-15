@@ -1,0 +1,17 @@
+import { ReactNode, ReactNodeArray } from 'react';
+import { FormInstance } from 'antd/es/form';
+import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../../types';
+export declare function defaultString(root: StringItem, form: FormInstance, required: boolean): ReactNode;
+export declare function textArea(root: StringItem, form: FormInstance, required: boolean): ReactNode;
+export declare function select(root: StringItem, form: FormInstance, required: boolean): ReactNode;
+export declare function radio(root: StringItem, form: FormInstance, required: boolean): ReactNode;
+export declare function date(root: StringItem, form: FormInstance, required: boolean): ReactNode;
+export declare function password(root: StringItem, form: FormInstance, required: boolean): ReactNode;
+export declare function defaultNumber(root: NumberItem, form: FormInstance, required: boolean): ReactNode;
+export declare function defaultBoolean(root: BooleanItem, form: FormInstance, required: boolean): ReactNode;
+export declare function switchComponent(root: BooleanItem, form: FormInstance, required: boolean): ReactNode;
+export declare function defaultArray(root: ArrayItem, form: FormInstance, required: boolean): ReactNode;
+export declare function checkboxGroup(root: ArrayItem, form: FormInstance, required: boolean): ReactNode;
+export declare function multipleOrTags(root: ArrayItem, form: FormInstance, required: boolean): ReactNode;
+export declare function defaultObject(root: SchemaItem, form: FormInstance, element: ReactNodeArray): ReactNode;
+export declare function defaultOneOf(root: SchemaItem, form: FormInstance, element: ReactNodeArray): ReactNode;
