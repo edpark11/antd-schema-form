@@ -1,14 +1,26 @@
-import isNil from 'lodash/isNil';
-import isNumber from 'lodash/isNumber';
-import isString from 'lodash/isString';
+import { isNil, isNumber, isString } from 'lodash';
 import { Rule } from 'rc-field-form/es/interface';
 import template from '../../utils/template';
 import { StringItem } from '../../types';
 
-function createStringRules(languagePack: any, root: StringItem, required: boolean): Array<Rule> {
+function createStringRules(
+  languagePack: any,
+  root: StringItem,
+  required: boolean
+): Array<Rule> {
   const {
-    $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage,
-    $maxLengthMessage, $length, $lengthMessage, $enumMessage
+    $required,
+    $requiredMessage,
+    pattern,
+    $patternOption,
+    $patternMessage,
+    minLength,
+    maxLength,
+    $minLengthMessage,
+    $maxLengthMessage,
+    $length,
+    $lengthMessage,
+    $enumMessage
   }: StringItem = root;
   const enums: string[] | undefined = root.enum;
   const rules: Rule[] = [];
@@ -65,7 +77,10 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
 
   // 正则表达式
   if (pattern) {
-    const reg: RegExp = new RegExp(pattern, isString($patternOption) ? $patternOption : undefined);
+    const reg: RegExp = new RegExp(
+      pattern,
+      isString($patternOption) ? $patternOption : undefined
+    );
 
     rules.push({
       pattern: reg,

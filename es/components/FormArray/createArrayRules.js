@@ -36,48 +36,47 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var isNil_1 = require("lodash/isNil");
-var isNumber_1 = require("lodash/isNumber");
+var lodash_1 = require("lodash");
 var template_1 = require("../../utils/template");
 function createArrayRules(languagePack, root, required) {
     var _this = this;
     var minItems = root.minItems, maxItems = root.maxItems, $minItemsMessage = root.$minItemsMessage, $maxItemsMessage = root.$maxItemsMessage;
     var rules = [];
     // 数组内元素的数量最少值
-    if (!isNil_1.default(minItems) && isNumber_1.default(minItems)) {
+    if (!lodash_1.isNil(minItems) && lodash_1.isNumber(minItems)) {
         rules.push({
             validator: function (rule, value) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             if (!(minItems !== undefined && value && value.length < minItems)) return [3 /*break*/, 1];
-                            throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
+                            throw new Error(typeof rule.message === "string" ? rule.message : undefined);
                         case 1: return [4 /*yield*/, Promise.resolve()];
                         case 2: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
             message: template_1.default($minItemsMessage || languagePack.rules.array.minItems, {
-                '0': minItems
+                "0": minItems
             })
         });
     }
     // 数组内元素的数量最大值
-    if (!isNil_1.default(maxItems) && isNumber_1.default(maxItems)) {
+    if (!lodash_1.isNil(maxItems) && lodash_1.isNumber(maxItems)) {
         rules.push({
             validator: function (rule, value, callback) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             if (!(maxItems !== undefined && value && value.length > maxItems)) return [3 /*break*/, 1];
-                            throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
+                            throw new Error(typeof rule.message === "string" ? rule.message : undefined);
                         case 1: return [4 /*yield*/, Promise.resolve()];
                         case 2: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
             message: template_1.default($maxItemsMessage || languagePack.rules.array.maxItems, {
-                '0': maxItems
+                "0": maxItems
             })
         });
     }

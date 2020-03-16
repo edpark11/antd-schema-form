@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
 import classNames from 'classnames';
-import omit from 'lodash/omit';
+import { omit } from 'lodash';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';

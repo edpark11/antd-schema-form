@@ -1,11 +1,19 @@
-import isNil from 'lodash/isNil';
-import isNumber from 'lodash/isNumber';
+import { isNil, isNumber } from 'lodash';
 import { Rule, RuleObject } from 'rc-field-form/es/interface';
 import template from '../../utils/template';
 import { ArrayItem } from '../../types';
 
-function createArrayRules(languagePack: any, root: ArrayItem, required: boolean): Array<Rule> {
-  const { minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
+function createArrayRules(
+  languagePack: any,
+  root: ArrayItem,
+  required: boolean
+): Array<Rule> {
+  const {
+    minItems,
+    maxItems,
+    $minItemsMessage,
+    $maxItemsMessage
+  }: ArrayItem = root;
   const rules: Rule[] = [];
 
   // 数组内元素的数量最少值
@@ -13,7 +21,9 @@ function createArrayRules(languagePack: any, root: ArrayItem, required: boolean)
     rules.push({
       validator: async (rule: RuleObject, value: Array<any>): Promise<void> => {
         if (minItems !== undefined && value && value.length < minItems) {
-          throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
+          throw new Error(
+            typeof rule.message === 'string' ? rule.message : undefined
+          );
         } else {
           return await Promise.resolve();
         }
@@ -27,9 +37,15 @@ function createArrayRules(languagePack: any, root: ArrayItem, required: boolean)
   // 数组内元素的数量最大值
   if (!isNil(maxItems) && isNumber(maxItems)) {
     rules.push({
-      validator: async (rule: RuleObject, value: Array<any>, callback: Function): Promise<void> => {
+      validator: async (
+        rule: RuleObject,
+        value: Array<any>,
+        callback: Function
+      ): Promise<void> => {
         if (maxItems !== undefined && value && value.length > maxItems) {
-          throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
+          throw new Error(
+            typeof rule.message === 'string' ? rule.message : undefined
+          );
         } else {
           return await Promise.resolve();
         }

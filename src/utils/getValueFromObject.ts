@@ -1,5 +1,4 @@
-import transform from 'lodash/transform';
-import isPlainObject from 'lodash/isPlainObject';
+import { transform, isPlainObject } from 'lodash';
 import { Store } from 'rc-field-form/es/interface';
 
 /**
@@ -7,14 +6,21 @@ import { Store } from 'rc-field-form/es/interface';
  * @param { Store } formValue: 表单值
  * @param { string } basicId: 格式化数据的id
  */
-export function formatValueBeforeGetValue(formValue: Store, basicId: string): Store {
+export function formatValueBeforeGetValue(
+  formValue: Store,
+  basicId: string
+): Store {
   const reg: RegExp = new RegExp(`^${ basicId.replace(/\$/g, '\\$') }/`);
 
-  return transform(formValue, function(result: object, value: any, key: string): void {
-    const formatKey: string = key.replace(reg, '');
+  return transform(
+    formValue,
+    function(result: object, value: any, key: string): void {
+      const formatKey: string = key.replace(reg, '');
 
-    result[formatKey] = value;
-  }, {});
+      result[formatKey] = value;
+    },
+    {}
+  );
 }
 
 /**

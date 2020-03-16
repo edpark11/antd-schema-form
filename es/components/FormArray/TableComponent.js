@@ -3,9 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
 var PropTypes = require("prop-types");
-var isNil_1 = require("lodash/isNil");
-var isBoolean_1 = require("lodash/isBoolean");
-var isObject_1 = require("lodash/isObject");
+var lodash_1 = require("lodash");
 var classnames_1 = require("classnames");
 var antd_1 = require("antd");
 var icons_1 = require("@ant-design/icons");
@@ -59,7 +57,7 @@ function TableComponent(props) {
     // 调换位置
     function moveRow(dragIndex, hoverIndex) {
         var tableValue = form.getFieldValue(id);
-        tableValue = isNil_1.default(tableValue) ? (root.$defaultValue || []) : tableValue;
+        tableValue = lodash_1.isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
         var dragRowItem = tableValue[dragIndex];
         var newData = immutability_helper_1.default({ tableValue: tableValue }, {
             tableValue: {
@@ -183,7 +181,7 @@ function TableComponent(props) {
     // 编辑位置框失去焦点
     function handleIndexInputBlur(index, event) {
         var tableValue = form.getFieldValue(id);
-        tableValue = isNil_1.default(tableValue) ? (root.$defaultValue || []) : tableValue;
+        tableValue = lodash_1.isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
         var length = tableValue.length;
         var newIndex = Number(inputChangeIndex) - 1;
         if (inputChangeIndex && newIndex !== index && /^[0-9]+$/.test(inputChangeIndex)) {
@@ -203,7 +201,7 @@ function TableComponent(props) {
         var formatValue = getValueFromObject_1.formatValueBeforeGetValue(value, id);
         var result = getValueFromObject_1.default(formatValue);
         var tableValue = form.getFieldValue(id);
-        tableValue = isNil_1.default(tableValue) ? (root.$defaultValue || []) : tableValue;
+        tableValue = lodash_1.isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
         // 判断是修改还是添加
         if (editIndex === undefined) {
             tableValue[root.$addDataInReverseOrder ? 'unshift' : 'push'](result['items']);
@@ -224,7 +222,7 @@ function TableComponent(props) {
     // 删除数据
     function handleDeleteDataClick(index, event) {
         var tableValue = form.getFieldValue(id);
-        tableValue = isNil_1.default(tableValue) ? (root.$defaultValue || []) : tableValue;
+        tableValue = lodash_1.isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
         tableValue.splice(index, 1);
         triggerChange(tableValue);
     }
@@ -247,7 +245,7 @@ function TableComponent(props) {
     function handleDeleteSelectDataClick(event) {
         var id = root.id;
         var tableValue = form.getFieldValue(id);
-        tableValue = isNil_1.default(tableValue) ? (root.$defaultValue || []) : tableValue;
+        tableValue = lodash_1.isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
         // 删除选中的数据
         var sortSelectedRowKeys = tableFunction_1.sortIndex(selectedRowKeys);
         for (var _i = 0, sortSelectedRowKeys_1 = sortSelectedRowKeys; _i < sortSelectedRowKeys_1.length; _i++) {
@@ -277,10 +275,10 @@ function TableComponent(props) {
         });
         // 渲染函数
         var renderCallback = function (value, record, index) {
-            if (isBoolean_1.default(value)) {
+            if (lodash_1.isBoolean(value)) {
                 return String(value);
             }
-            else if (isObject_1.default(value)) {
+            else if (lodash_1.isObject(value)) {
                 return Object.prototype.toString.call(value);
             }
             else {
@@ -343,15 +341,15 @@ function TableComponent(props) {
         // eslint-disable-next-line @typescript-eslint/tslint/config
         if (editIndex !== undefined) {
             var tableValue = form.getFieldValue(id);
-            tableValue = isNil_1.default(tableValue) ? (root.$defaultValue || []) : tableValue;
+            tableValue = lodash_1.isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
             var itemValue = tableValue[editIndex];
             var result = getObjectFromValue_1.default({ items: itemValue }, id);
             form.setFieldsValue(result);
         }
     }, [isDisplayDataDrawer, editIndex]);
-    var inputNotDisplay = isNil_1.default(inputDisplayIndex);
+    var inputNotDisplay = lodash_1.isNil(inputDisplayIndex);
     var value = form.getFieldValue(id);
-    value = isNil_1.default(value) ? [] : value;
+    value = lodash_1.isNil(value) ? [] : value;
     // 对数组内的元素数量进行验证
     var arrayRulesVerificationResult = undefined;
     if (minItems !== undefined && value.length < minItems) {

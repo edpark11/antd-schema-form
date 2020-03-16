@@ -1,4 +1,4 @@
-import isPlainObject from 'lodash/isPlainObject';
+import { isPlainObject } from 'lodash';
 import { Store } from 'rc-field-form/es/interface';
 
 /**
@@ -13,7 +13,9 @@ function getObjectFromValue(obj: object, basicId?: string): Store {
     const item: any = obj[key];
 
     if (isPlainObject(item) && !item._isAMomentObject) {
-      const bid: string = basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`;
+      const bid: string = basicId
+        ? `${ basicId }/${ key }/properties`
+        : `${ key }/properties`;
       const result: object = getObjectFromValue(item, bid);
 
       value = { ...value, ...result };

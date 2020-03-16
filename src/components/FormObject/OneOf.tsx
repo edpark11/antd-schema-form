@@ -12,7 +12,7 @@ import {
   ReactNode
 } from 'react';
 import * as PropTypes from 'prop-types';
-import isNumber from 'lodash/isNumber';
+import { isNumber } from 'lodash';
 import { Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/es/radio';
 import AntdSchemaFormContext from '../../context';
@@ -34,8 +34,9 @@ function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement | null {
   const { id, oneOf, $oneOfDisabled, $oneOfIndex }: SchemaItem = root;
 
   // oneOf选项卡的index
-  const [index, setIndex]: [number, D<S<number>>]
-    = useState(($oneOfIndex !== undefined && isNumber($oneOfIndex)) ? $oneOfIndex : 0);
+  const [index, setIndex]: [number, D<S<number>>] = useState(
+    $oneOfIndex !== undefined && isNumber($oneOfIndex) ? $oneOfIndex : 0
+  );
 
   // 切换的callback
   function switchCallback(newIndex: number, oldIndex: number): void {
@@ -44,9 +45,12 @@ function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement | null {
     // so to clear the value of the component, it is best to avoid this situation
     if (
       oneOf
-      && oneOf[newIndex].type === 'string' && oneOf[oldIndex].type === 'string'                    // 新旧组件都为string
-      && ((oneOf[oldIndex].$componentType !== 'date' && oneOf[newIndex].$componentType === 'date') // 判断是否为date组件
-      || (oneOf[oldIndex].$componentType === 'date' && oneOf[newIndex].$componentType !== 'date'))
+      && oneOf[newIndex].type === 'string'
+      && oneOf[oldIndex].type === 'string' // 新旧组件都为string
+      && ((oneOf[oldIndex].$componentType !== 'date'
+        && oneOf[newIndex].$componentType === 'date') // 判断是否为date组件
+        || (oneOf[oldIndex].$componentType === 'date'
+          && oneOf[newIndex].$componentType !== 'date'))
     ) {
       form.resetFields([id]);
     }
@@ -63,9 +67,14 @@ function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement | null {
     }
   }
 
-  useEffect(function(): void {
-    setIndex(($oneOfIndex !== undefined && isNumber($oneOfIndex)) ? $oneOfIndex : 0);
-  }, [root]);
+  useEffect(
+    function(): void {
+      setIndex(
+        $oneOfIndex !== undefined && isNumber($oneOfIndex) ? $oneOfIndex : 0
+      );
+    },
+    [root]
+  );
 
   // 渲染radio
   function radioGroupView(): ReactNode {
@@ -90,10 +99,8 @@ function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement | null {
 
   return (
     <Fragment>
-      <div className={ styleName('object-radio-group') }>
-        { radioGroupView() }
-      </div>
-      { element[index] }
+      <div className={ styleName('object-radio-group') }>{radioGroupView()}</div>
+      {element[index]}
     </Fragment>
   );
 }

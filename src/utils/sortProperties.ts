@@ -1,6 +1,4 @@
-import sortBy from 'lodash/sortBy';
-import toPairs from 'lodash/toPairs';
-import fromPairs from 'lodash/fromPairs';
+import { sortBy, toPairs, fromPairs } from 'lodash';
 
 /* 对root.properties进行排序 */
 function sortProperties(properties: object): object {

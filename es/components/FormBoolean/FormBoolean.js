@@ -16,7 +16,7 @@ var react_1 = require("react");
 var PropTypes = require("prop-types");
 var antd_1 = require("antd");
 var classnames_1 = require("classnames");
-var omit_1 = require("lodash/omit");
+var lodash_1 = require("lodash");
 var context_1 = require("../../context");
 var styleName_1 = require("../../utils/styleName");
 var createElement_1 = require("../../utils/createElement");
@@ -33,7 +33,7 @@ function FormBoolean(props) {
             ? customComponent[$componentType](root, form, required)
             : createElement_1.default(customComponent.defaultBoolean, [root, form, required]);
     }
-    return element ? (React.createElement(antd_1.Form.Item, __assign({ className: classnames_1.default($hidden ? styleName_1.default('hidden') : undefined, $formItemProps === null || $formItemProps === void 0 ? void 0 : $formItemProps.className), name: id, label: title, valuePropName: "checked" }, omit_1.default($formItemProps, ['className'])), element)) : null;
+    return element ? (React.createElement(antd_1.Form.Item, __assign({ className: classnames_1.default($hidden ? styleName_1.default('hidden') : undefined, $formItemProps === null || $formItemProps === void 0 ? void 0 : $formItemProps.className), name: id, label: title, valuePropName: "checked" }, lodash_1.omit($formItemProps, ['className'])), element)) : null;
 }
 FormBoolean.propTypes = {
     root: PropTypes.object

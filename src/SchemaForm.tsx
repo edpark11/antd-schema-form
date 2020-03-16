@@ -12,7 +12,7 @@ import {
 } from 'react';
 import * as PropTypes from 'prop-types';
 import { Validator } from 'prop-types';
-import isPlainObject from 'lodash/isPlainObject';
+import { isPlainObject } from 'lodash';
 import { Form } from 'antd';
 import { FormInstance } from 'antd/es/form';
 import { FormProps } from 'antd/es/form/Form';
@@ -40,9 +40,14 @@ export interface SchemaFormProps {
   formOptions?: FormProps;
 }
 
-type SchemaFormComponent = ForwardRefExoticComponent<PropsWithoutRef<SchemaFormProps> & RefAttributes<any>>;
+type SchemaFormComponent = ForwardRefExoticComponent<
+  PropsWithoutRef<SchemaFormProps> & RefAttributes<any>
+>;
 
-const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): ReactElement {
+const SchemaForm: SchemaFormComponent = forwardRef(function(
+  props: PWC<SchemaFormProps>,
+  ref: Ref<any>
+): ReactElement {
   const [form]: [FormInstance] = Form.useForm();
   const {
     value: schemaFormValue,
@@ -59,31 +64,35 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
 
   // 获取系统语言
   // eslint-disable-next-line @typescript-eslint/tslint/config
-  const language: string = typeof window === 'object' // 服务器端渲染判断
-    ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
-    : 'default';
+  const language: string = 'default';
   const customLangPack: object | undefined = props.languagePack; // 自定义语言包
-  const langP: object = (typeof customLangPack === 'object' && isPlainObject(customLangPack))
-    ? customLangPack
-    : (language in languagePack ? languagePack[language] : languagePack['default']); // 语言包
+  const langP: object
+    = typeof customLangPack === 'object' && isPlainObject(customLangPack)
+      ? customLangPack
+      : language in languagePack
+        ? languagePack[language]
+        : languagePack['default']; // 语言包
 
   const contextValue: ContextValue = {
     form,
     customComponent,
     customTableRender,
-    language,           // 系统语言
+    language, // 系统语言
     languagePack: langP // 语言包
   };
 
-  useImperativeHandle(ref, (): FormInstance => form );
+  useImperativeHandle(ref, (): FormInstance => form);
 
-  useEffect(function(): void {
-    const defaultValue: Store = getObjectFromSchema(json);
-    const obj: Store = getObjectFromValue(schemaFormValue);
+  useEffect(
+    function(): void {
+      const defaultValue: Store = getObjectFromSchema(json);
+      const obj: Store = getObjectFromValue(schemaFormValue);
 
-    form.resetFields();
-    form.setFieldsValue({ ...defaultValue, ...obj });
-  }, [schemaFormValue]);
+      form.resetFields();
+      form.setFieldsValue({ ...defaultValue, ...obj });
+    },
+    [schemaFormValue]
+  );
 
   return (
     <AntdSchemaFormContext.Provider value={ contextValue }>
@@ -105,16 +114,12 @@ SchemaForm.propTypes = {
   value: PropTypes.object,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,
-  okText: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  cancelText: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  okText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  cancelText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   footer: PropTypes.func,
-  customComponent: PropTypes.objectOf(PropTypes.func) as Validator<{ [key: string]: Function } | null | undefined>,
+  customComponent: PropTypes.objectOf(PropTypes.func) as Validator<
+    { [key: string]: Function } | null | undefined
+  >,
   customTableRender: PropTypes.objectOf(PropTypes.func),
   languagePack: PropTypes.object
 };

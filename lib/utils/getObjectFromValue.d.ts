@@ -1,4 +1,4 @@
-import { Store } from 'rc-field-form/es/interface';
+import { Store } from "rc-field-form/es/interface";
 /**
  * object对象，格式化成表单需要的值
  * @param { object } obj: 对象

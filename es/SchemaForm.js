@@ -14,7 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
 var PropTypes = require("prop-types");
-var isPlainObject_1 = require("lodash/isPlainObject");
+var lodash_1 = require("lodash");
 var antd_1 = require("antd");
 var context_1 = require("./context");
 var FormObject_1 = require("./components/FormObject/FormObject");
@@ -26,13 +26,15 @@ var SchemaForm = react_1.forwardRef(function (props, ref) {
     var schemaFormValue = props.value, json = props.json, onOk = props.onOk, onCancel = props.onCancel, okText = props.okText, cancelText = props.cancelText, footer = props.footer, customComponent = props.customComponent, customTableRender = props.customTableRender, _a = props.formOptions, formOptions = _a === void 0 ? {} : _a;
     // 获取系统语言
     // eslint-disable-next-line @typescript-eslint/tslint/config
-    var language = typeof window === 'object' // 服务器端渲染判断
-        ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
-        : 'default';
+    var language = typeof window === "object" // 服务器端渲染判断
+        ? (window.navigator.language || window.navigator["userLanguage"]).toLocaleLowerCase()
+        : "default";
     var customLangPack = props.languagePack; // 自定义语言包
-    var langP = (typeof customLangPack === 'object' && isPlainObject_1.default(customLangPack))
+    var langP = typeof customLangPack === "object" && lodash_1.isPlainObject(customLangPack)
         ? customLangPack
-        : (language in languagePack_1.default ? languagePack_1.default[language] : languagePack_1.default['default']); // 语言包
+        : language in languagePack_1.default
+            ? languagePack_1.default[language]
+            : languagePack_1.default["default"]; // 语言包
     var contextValue = {
         form: form,
         customComponent: customComponent,
@@ -56,14 +58,8 @@ SchemaForm.propTypes = {
     value: PropTypes.object,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
-    okText: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-    cancelText: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    okText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    cancelText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     footer: PropTypes.func,
     customComponent: PropTypes.objectOf(PropTypes.func),
     customTableRender: PropTypes.objectOf(PropTypes.func),

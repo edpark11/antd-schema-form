@@ -50,7 +50,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
 var PropTypes = require("prop-types");
-var isArray_1 = require("lodash/isArray");
+var lodash_1 = require("lodash");
 var antd_1 = require("antd");
 var context_1 = require("../../context");
 var styleName_1 = require("../../utils/styleName");
@@ -74,7 +74,7 @@ function FormObject(props) {
         var _required = !!required;
         var props = { key: id, root: root, required: _required };
         // 渲染oneOf
-        if ('oneOf' in root && root.oneOf && isArray_1.default(root.oneOf) && root.oneOf.length > 0) {
+        if ('oneOf' in root && root.oneOf && lodash_1.isArray(root.oneOf) && root.oneOf.length > 0) {
             // eslint-disable-next-line no-use-before-define
             return renderOneOfComponentView(root, _required);
         }
