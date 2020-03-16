@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var transform_1 = require("lodash/transform");
-var orderBy_1 = require("lodash/orderBy");
+var transform_1 = __importDefault(require("lodash/transform"));
+var orderBy_1 = __importDefault(require("lodash/orderBy"));
 /**
  * 格式化数据，使值满足antd的props-type
  * @param { Array<string | number> } rawArray: 原数据

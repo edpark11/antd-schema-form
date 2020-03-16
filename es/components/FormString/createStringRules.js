@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = require("lodash");
-var template_1 = require("../../utils/template");
+var template_1 = __importDefault(require("../../utils/template"));
 function createStringRules(languagePack, root, required) {
     var $required = root.$required, $requiredMessage = root.$requiredMessage, pattern = root.pattern, $patternOption = root.$patternOption, $patternMessage = root.$patternMessage, minLength = root.minLength, maxLength = root.maxLength, $minLengthMessage = root.$minLengthMessage, $maxLengthMessage = root.$maxLengthMessage, $length = root.$length, $lengthMessage = root.$lengthMessage, $enumMessage = root.$enumMessage;
     var enums = root.enum;
@@ -17,10 +20,10 @@ function createStringRules(languagePack, root, required) {
     // 枚举
     if (enums) {
         rules.push({
-            type: "enum",
+            type: 'enum',
             enum: enums,
             message: template_1.default($enumMessage || languagePack.rules.enum, {
-                "0": "[" + enums.join(", ") + "]"
+                '0': "[" + enums.join(', ') + "]"
             })
         });
     }
@@ -29,7 +32,7 @@ function createStringRules(languagePack, root, required) {
         rules.push({
             min: minLength,
             message: template_1.default($minLengthMessage || languagePack.rules.string.min, {
-                "0": minLength
+                '0': minLength
             })
         });
     }
@@ -38,7 +41,7 @@ function createStringRules(languagePack, root, required) {
         rules.push({
             max: maxLength,
             message: template_1.default($maxLengthMessage || languagePack.rules.string.max, {
-                "0": maxLength
+                '0': maxLength
             })
         });
     }
@@ -47,7 +50,7 @@ function createStringRules(languagePack, root, required) {
         rules.push({
             len: $length,
             message: template_1.default($lengthMessage || languagePack.rules.string.length, {
-                "0": $length
+                '0': $length
             })
         });
     }
@@ -57,7 +60,7 @@ function createStringRules(languagePack, root, required) {
         rules.push({
             pattern: reg,
             message: template_1.default($patternMessage || languagePack.rules.string.pattern, {
-                "0": "/" + pattern + "/" + (lodash_1.isString($patternOption) ? $patternOption : "")
+                '0': "/" + pattern + "/" + (lodash_1.isString($patternOption) ? $patternOption : '')
             })
         });
     }

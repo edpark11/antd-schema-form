@@ -1,11 +1,21 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
+var React = __importStar(require("react"));
 var antd_1 = require("antd");
-var selectOptionsRender_1 = require("./selectOptionsRender");
-var styleName_1 = require("../../utils/styleName");
-var TableComponent_1 = require("../FormArray/TableComponent");
-var OneOf_1 = require("../FormObject/OneOf");
+var selectOptionsRender_1 = __importDefault(require("./selectOptionsRender"));
+var styleName_1 = __importDefault(require("../../utils/styleName"));
+var TableComponent_1 = __importDefault(require("../FormArray/TableComponent"));
+var OneOf_1 = __importDefault(require("../FormObject/OneOf"));
 /* string类型组件 */
 // 默认组件
 function defaultString(root, form, required) {

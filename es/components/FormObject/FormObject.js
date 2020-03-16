@@ -46,22 +46,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
+var React = __importStar(require("react"));
 var react_1 = require("react");
-var PropTypes = require("prop-types");
+var PropTypes = __importStar(require("prop-types"));
 var lodash_1 = require("lodash");
 var antd_1 = require("antd");
-var context_1 = require("../../context");
-var styleName_1 = require("../../utils/styleName");
-var FormString_1 = require("../FormString/FormString");
-var FormNumber_1 = require("../FormNumber/FormNumber");
-var FormBoolean_1 = require("../FormBoolean/FormBoolean");
-var FormArray_1 = require("../FormArray/FormArray");
-var getValueFromObject_1 = require("../../utils/getValueFromObject");
-var getKeysFromObject_1 = require("../../utils/getKeysFromObject");
-var createElement_1 = require("../../utils/createElement");
-var sortProperties_1 = require("../../utils/sortProperties");
+var context_1 = __importDefault(require("../../context"));
+var styleName_1 = __importDefault(require("../../utils/styleName"));
+var FormString_1 = __importDefault(require("../FormString/FormString"));
+var FormNumber_1 = __importDefault(require("../FormNumber/FormNumber"));
+var FormBoolean_1 = __importDefault(require("../FormBoolean/FormBoolean"));
+var FormArray_1 = __importDefault(require("../FormArray/FormArray"));
+var getValueFromObject_1 = __importDefault(require("../../utils/getValueFromObject"));
+var getKeysFromObject_1 = __importDefault(require("../../utils/getKeysFromObject"));
+var createElement_1 = __importDefault(require("../../utils/createElement"));
+var sortProperties_1 = __importDefault(require("../../utils/sortProperties"));
 function FormObject(props) {
     var context = react_1.useContext(context_1.default);
     if (!('form' in context))

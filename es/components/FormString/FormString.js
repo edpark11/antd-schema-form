@@ -10,17 +10,27 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
+var React = __importStar(require("react"));
 var react_1 = require("react");
-var PropTypes = require("prop-types");
+var PropTypes = __importStar(require("prop-types"));
 var antd_1 = require("antd");
-var classnames_1 = require("classnames");
+var classnames_1 = __importDefault(require("classnames"));
 var lodash_1 = require("lodash");
-var context_1 = require("../../context");
-var styleName_1 = require("../../utils/styleName");
-var createStringRules_1 = require("./createStringRules");
-var createElement_1 = require("../../utils/createElement");
+var context_1 = __importDefault(require("../../context"));
+var styleName_1 = __importDefault(require("../../utils/styleName"));
+var createStringRules_1 = __importDefault(require("./createStringRules"));
+var createElement_1 = __importDefault(require("../../utils/createElement"));
 function FormString(props) {
     var context = react_1.useContext(context_1.default);
     if (!('form' in context))

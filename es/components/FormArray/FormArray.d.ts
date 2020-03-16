@@ -1,6 +1,6 @@
-import { PropsWithChildren, ReactElement } from "react";
-import * as PropTypes from "prop-types";
-import { ArrayItem } from "../../types";
+import { PropsWithChildren, ReactElement } from 'react';
+import * as PropTypes from 'prop-types';
+import { ArrayItem } from '../../types';
 /**
  * 当类型为array时的组件渲染
  * json schema的属性包括：id, type, title, description, items, minItems, maxItems

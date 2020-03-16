@@ -1,6 +1,6 @@
-import { PropsWithChildren, ReactElement, ReactNodeArray } from "react";
-import * as PropTypes from "prop-types";
-import { SchemaItem } from "../../types";
+import { PropsWithChildren, ReactElement, ReactNodeArray } from 'react';
+import * as PropTypes from 'prop-types';
+import { SchemaItem } from '../../types';
 interface OneOfProps {
     root: SchemaItem;
     element: ReactNodeArray;

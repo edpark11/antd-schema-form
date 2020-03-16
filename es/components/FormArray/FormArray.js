@@ -10,21 +10,31 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
+var React = __importStar(require("react"));
 var react_1 = require("react");
-var PropTypes = require("prop-types");
-var classnames_1 = require("classnames");
+var PropTypes = __importStar(require("prop-types"));
+var classnames_1 = __importDefault(require("classnames"));
 var antd_1 = require("antd");
 var lodash_1 = require("lodash");
-var context_1 = require("../../context");
-var styleName_1 = require("../../utils/styleName");
-var createArrayRules_1 = require("./createArrayRules");
-var createElement_1 = require("../../utils/createElement");
+var context_1 = __importDefault(require("../../context"));
+var styleName_1 = __importDefault(require("../../utils/styleName"));
+var createArrayRules_1 = __importDefault(require("./createArrayRules"));
+var createElement_1 = __importDefault(require("../../utils/createElement"));
 function FormArray(props) {
     var _a;
     var context = react_1.useContext(context_1.default);
-    if (!("form" in context))
+    if (!('form' in context))
         return null; // 类型判断
     var form = context.form, customComponent = context.customComponent, languagePack = context.languagePack;
     var root = props.root, required = props.required;
@@ -46,13 +56,13 @@ function FormArray(props) {
         }
     }
     var classname = classnames_1.default((_a = {},
-        _a[styleName_1.default("array-table-form-item")] = isTableComponent,
-        _a[styleName_1.default("hidden")] = $hidden,
+        _a[styleName_1.default('array-table-form-item')] = isTableComponent,
+        _a[styleName_1.default('hidden')] = $hidden,
         _a));
     if ($formItemProps && $formItemProps.className) {
         classname = classnames_1.default(classname, $formItemProps.className);
     }
-    return element ? (React.createElement(antd_1.Form.Item, __assign({ className: classname, name: id, rules: rules, label: title }, lodash_1.omit($formItemProps, ["className"])), element)) : null;
+    return element ? (React.createElement(antd_1.Form.Item, __assign({ className: classname, name: id, rules: rules, label: title }, lodash_1.omit($formItemProps, ['className'])), element)) : null;
 }
 FormArray.propTypes = {
     root: PropTypes.object,

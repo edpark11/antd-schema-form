@@ -1,4 +1,4 @@
-import { Store } from "rc-field-form/es/interface";
+import { Store } from 'rc-field-form/es/interface';
 /**
  * 格式化数据
  * @param { Store } formValue: 表单值

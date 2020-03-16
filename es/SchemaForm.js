@@ -10,31 +10,39 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
+var React = __importStar(require("react"));
 var react_1 = require("react");
-var PropTypes = require("prop-types");
+var PropTypes = __importStar(require("prop-types"));
 var lodash_1 = require("lodash");
 var antd_1 = require("antd");
-var context_1 = require("./context");
-var FormObject_1 = require("./components/FormObject/FormObject");
-var getObjectFromValue_1 = require("./utils/getObjectFromValue");
-var getObjectFromSchema_1 = require("./utils/getObjectFromSchema");
-var languagePack_1 = require("./languagePack");
+var context_1 = __importDefault(require("./context"));
+var FormObject_1 = __importDefault(require("./components/FormObject/FormObject"));
+var getObjectFromValue_1 = __importDefault(require("./utils/getObjectFromValue"));
+var getObjectFromSchema_1 = __importDefault(require("./utils/getObjectFromSchema"));
+var languagePack_1 = __importDefault(require("./languagePack"));
 var SchemaForm = react_1.forwardRef(function (props, ref) {
     var form = antd_1.Form.useForm()[0];
     var schemaFormValue = props.value, json = props.json, onOk = props.onOk, onCancel = props.onCancel, okText = props.okText, cancelText = props.cancelText, footer = props.footer, customComponent = props.customComponent, customTableRender = props.customTableRender, _a = props.formOptions, formOptions = _a === void 0 ? {} : _a;
     // 获取系统语言
     // eslint-disable-next-line @typescript-eslint/tslint/config
-    var language = typeof window === "object" // 服务器端渲染判断
-        ? (window.navigator.language || window.navigator["userLanguage"]).toLocaleLowerCase()
-        : "default";
+    var language = 'default';
     var customLangPack = props.languagePack; // 自定义语言包
-    var langP = typeof customLangPack === "object" && lodash_1.isPlainObject(customLangPack)
+    var langP = typeof customLangPack === 'object' && lodash_1.isPlainObject(customLangPack)
         ? customLangPack
         : language in languagePack_1.default
             ? languagePack_1.default[language]
-            : languagePack_1.default["default"]; // 语言包
+            : languagePack_1.default['default']; // 语言包
     var contextValue = {
         form: form,
         customComponent: customComponent,

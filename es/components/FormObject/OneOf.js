@@ -1,15 +1,25 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
+var React = __importStar(require("react"));
 var react_1 = require("react");
-var PropTypes = require("prop-types");
+var PropTypes = __importStar(require("prop-types"));
 var lodash_1 = require("lodash");
 var antd_1 = require("antd");
-var context_1 = require("../../context");
-var styleName_1 = require("../../utils/styleName");
+var context_1 = __importDefault(require("../../context"));
+var styleName_1 = __importDefault(require("../../utils/styleName"));
 function OneOf(props) {
     var context = react_1.useContext(context_1.default);
-    if (!("form" in context))
+    if (!('form' in context))
         return null; // 类型判断
     var form = context.form;
     var element = props.element, root = props.root;
@@ -21,13 +31,13 @@ function OneOf(props) {
         // 这个情况是type="string"时，下一个控件是date，因为moment的关系，所以要清空组件的值，最好尽量避免这种情况
         // This case is type="string", the next control is date, because of the relationship of the moment,
         // so to clear the value of the component, it is best to avoid this situation
-        if (oneOf &&
-            oneOf[newIndex].type === "string" &&
-            oneOf[oldIndex].type === "string" && // 新旧组件都为string
-            ((oneOf[oldIndex].$componentType !== "date" &&
-                oneOf[newIndex].$componentType === "date") || // 判断是否为date组件
-                (oneOf[oldIndex].$componentType === "date" &&
-                    oneOf[newIndex].$componentType !== "date"))) {
+        if (oneOf
+            && oneOf[newIndex].type === 'string'
+            && oneOf[oldIndex].type === 'string' // 新旧组件都为string
+            && ((oneOf[oldIndex].$componentType !== 'date'
+                && oneOf[newIndex].$componentType === 'date') // 判断是否为date组件
+                || (oneOf[oldIndex].$componentType === 'date'
+                    && oneOf[newIndex].$componentType !== 'date'))) {
             form.resetFields([id]);
         }
         setIndex(newIndex);
@@ -35,7 +45,7 @@ function OneOf(props) {
     // 切换指定index
     function handleDesignationIndexChange(event) {
         var value = event.target.value;
-        if (typeof value === "number") {
+        if (typeof value === 'number') {
             switchCallback(value, index);
         }
     }
@@ -53,7 +63,7 @@ function OneOf(props) {
         return (React.createElement(antd_1.Radio.Group, { key: "radio-group", size: "small", options: options, value: index, onChange: $oneOfDisabled ? undefined : handleDesignationIndexChange }));
     }
     return (React.createElement(react_1.Fragment, null,
-        React.createElement("div", { className: styleName_1.default("object-radio-group") }, radioGroupView()),
+        React.createElement("div", { className: styleName_1.default('object-radio-group') }, radioGroupView()),
         element[index]));
 }
 OneOf.propTypes = {

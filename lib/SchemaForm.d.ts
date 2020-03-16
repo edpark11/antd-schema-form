@@ -1,6 +1,6 @@
-import { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from "react";
-import { FormProps } from "antd/es/form/Form";
-import { SchemaItem } from "./types";
+import { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
+import { FormProps } from 'antd/es/form/Form';
+import { SchemaItem } from './types';
 export interface SchemaFormProps {
     json: SchemaItem;
     value?: any;

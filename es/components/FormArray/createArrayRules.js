@@ -35,9 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = require("lodash");
-var template_1 = require("../../utils/template");
+var template_1 = __importDefault(require("../../utils/template"));
 function createArrayRules(languagePack, root, required) {
     var _this = this;
     var minItems = root.minItems, maxItems = root.maxItems, $minItemsMessage = root.$minItemsMessage, $maxItemsMessage = root.$maxItemsMessage;
@@ -50,14 +53,14 @@ function createArrayRules(languagePack, root, required) {
                     switch (_a.label) {
                         case 0:
                             if (!(minItems !== undefined && value && value.length < minItems)) return [3 /*break*/, 1];
-                            throw new Error(typeof rule.message === "string" ? rule.message : undefined);
+                            throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
                         case 1: return [4 /*yield*/, Promise.resolve()];
                         case 2: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
             message: template_1.default($minItemsMessage || languagePack.rules.array.minItems, {
-                "0": minItems
+                '0': minItems
             })
         });
     }
@@ -69,14 +72,14 @@ function createArrayRules(languagePack, root, required) {
                     switch (_a.label) {
                         case 0:
                             if (!(maxItems !== undefined && value && value.length > maxItems)) return [3 /*break*/, 1];
-                            throw new Error(typeof rule.message === "string" ? rule.message : undefined);
+                            throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
                         case 1: return [4 /*yield*/, Promise.resolve()];
                         case 2: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
             message: template_1.default($maxItemsMessage || languagePack.rules.array.maxItems, {
-                "0": maxItems
+                '0': maxItems
             })
         });
     }
